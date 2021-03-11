@@ -1,4 +1,4 @@
-<!-- get rid of this once validations ensure name -->
+** get rid of conditional once validations ensure name **
 <% if @classroom.name %>
   <h2><%= @classroom.name %></h2><br>
 
@@ -11,7 +11,8 @@
       <% @classroom.students.each do |s| %>
         <li>
           <%= s.name %><br>
-          Student's allergies and severities<br>
+          <%= s.display_allergies %><br>
+          ** format allergies and severities to deal with none or multiple **<br>
           <%= link_to "Detail", student_path(s) %><br>
         </li>
       <% end %>
