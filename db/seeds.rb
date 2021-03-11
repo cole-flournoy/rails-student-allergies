@@ -12,7 +12,7 @@ weird = Allergy.create(name: "Eye contact")
 
 
 epi = Severity.create(name: "Needs Epinephrine", student: jimmy, allergy: pnuts)
-mild = Severity.create(name: "Needs to be left alone", student: mimmy, allergy:weird)
+mild = Severity.create(name: "Needs to be left alone", student: mimmy, allergy: weird)
 
 epi2 = Severity.create(name: "Needs Epinephrine", student: timmy, allergy: pnuts)
-mild2 = Severity.create(name: "Needs to be left alone", student: timmy, allergy:weird)
+mild2 = Severity.create(name: "Needs to be left alone", student: timmy, allergy: weird)
