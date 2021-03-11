@@ -1,1 +1,13 @@
-All Classrooms
+<h2>All Classrooms</h2>
+
+<ul>
+  <% @classrooms.each do |c| %>
+    <li>
+      <%= c.name %><br>
+      <%= link_to "Details", classroom_path(c) %><br>
+      link to nested students index<br>
+      <%= link_to "Edit", edit_classroom_path(c) %><br>
+      link to add new student to this classroom<br>
+    </li>
+  <% end %>
+</ul>

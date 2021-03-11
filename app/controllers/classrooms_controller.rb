@@ -1,5 +1,6 @@
 class ClassroomsController < ApplicationController
   def index
+    # reference from current_user
     @classrooms = Classroom.all
   end
 
