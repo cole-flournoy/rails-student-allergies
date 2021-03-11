@@ -16,8 +16,9 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.new(classroom_params)
 
     if @classroom.save
-      redirect_to @classroom
+      redirect_to classroom_path(@classroom)
     else
+      flash[:alert] = "Could not be created"
       render :new
     end
   end
