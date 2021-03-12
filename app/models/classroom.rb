@@ -1,4 +1,4 @@
 class Classroom < ApplicationRecord
   belongs_to :user
-  has_many :students
+  has_and_belongs_to_many :students
 end

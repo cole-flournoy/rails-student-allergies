@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_035640) do
+ActiveRecord::Schema.define(version: 2021_03_12_071615) do
 
   create_table "allergies", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2021_03_11_035640) do
     t.index ["user_id"], name: "index_classrooms_on_user_id"
   end
 
+  create_table "classrooms_students", id: false, force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "classroom_id", null: false
+    t.index ["classroom_id", "student_id"], name: "index_classrooms_students_on_classroom_id_and_student_id"
+    t.index ["student_id", "classroom_id"], name: "index_classrooms_students_on_student_id_and_classroom_id"
+  end
+
   create_table "severities", force: :cascade do |t|
     t.string "name"
     t.integer "allergy_id", null: false
@@ -38,10 +45,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_035640) do
 
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.integer "classroom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["classroom_id"], name: "index_students_on_classroom_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,5 +58,4 @@ ActiveRecord::Schema.define(version: 2021_03_11_035640) do
   add_foreign_key "classrooms", "users"
   add_foreign_key "severities", "allergies"
   add_foreign_key "severities", "students"
-  add_foreign_key "students", "classrooms"
 end
