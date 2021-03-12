@@ -12,7 +12,12 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    # if classroom_id, build Student from classroom
+    if params[:classroom_id]
+      @student = Classroom.find(params[:classroom_id]).students.build
+    else
+      @student = Student.new
+    end
   end
 
   def create
