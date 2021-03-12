@@ -1,6 +1,10 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.all
+    if params[:classroom_id]
+      @students = Classroom.find(params[:classroom_id]).students
+    else
+      @students = Student.all
+    end
   end
 
   def show
