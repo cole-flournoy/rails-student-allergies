@@ -4,7 +4,7 @@
 
   <% if @classroom.students.empty? %>
     Class empty<br>
-    link to "Add new student to this class" at nested new route<br>
+    <%= link_to "Add new student to this class", new_classroom_student_path(@classroom) %><br>
   <% else %>
     Students:
     <ul>
@@ -22,4 +22,4 @@
 
 <%= link_to "Edit Classroom Name", edit_classroom_path(@classroom) %><br>
 <%= button_to "Delete Classroom", classroom_path(@classroom), method: :delete %><br>
-link to "Add new student to this class" at nested new route<br>
+<%= link_to "Add new student to this class", new_classroom_student_path(@classroom) %><br>
