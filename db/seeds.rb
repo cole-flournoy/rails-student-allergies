@@ -1,16 +1,12 @@
 
 bob = User.create(name: "Bob")
-bob_class = Classroom.create(period: "A", subject: "Math", teacher: "Mr. Bob", user: bob)
+bob_class = Classroom.create(period: "2", subject: "Math", teacher: "Mr. Bob", user: bob)
 
-jimmy = Student.create(name: "Jimmy")
-bob_class.students << jimmy
-timmy = Student.create(name: "Timmy")
-bob_class.students << timmy
-mimmy = Student.create(name: "Mimmy")
-bob_class.students << mimmy
-bimmy = Student.create(name: "Bimmy")
-bob_class.students << bimmy
-
+jimmy = Student.create(first_name: "Jimmy", last_name: "Johnson", grade: 3, lunch_period: "A")
+timmy = Student.create(first_name: "Timmy", last_name: "Tonson", grade: 3, lunch_period: "A")
+mimmy = Student.create(first_name: "Mimmy", last_name: "Monson", grade: 3, lunch_period: "B")
+bimmy = Student.create(first_name: "Bimmy", last_name: "Bonson", grade: 3, lunch_period: "B")
+bob_class.students = jimmy, timmy, mimmy, bimmy
 
 
 pnuts = Allergy.create(name: "Peanuts")
