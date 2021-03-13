@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   resources :users
-  
+  resources :classrooms
   resources :classrooms, only: [:show] do
     resources :students, only: [:index, :new]
   end
-  resources :classrooms
 
   resources :severities
   resources :allergies
