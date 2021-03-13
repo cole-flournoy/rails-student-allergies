@@ -1,1 +1,11 @@
-All Students
+<% if @classroom %>
+  <h2>Student Roster</h2>
+  <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
+<% else %>
+  <h2>All Students</h2>
+<% end %>
+<ul>
+<% @students.each do |s| %>
+  <li><%= "#{s.last_name}, #{s.first_name}: Grade - #{s.grade} Lunch Period - #{s.lunch_period}" %></li>
+<% end %> 
+</ul>

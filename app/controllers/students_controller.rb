@@ -1,7 +1,8 @@
 class StudentsController < ApplicationController
   def index
     if params[:classroom_id]
-      @students = Classroom.find(params[:classroom_id]).students
+      @classroom = Classroom.find(params[:classroom_id])
+      @students = @classroom.students
     else
       @students = Student.all
     end
