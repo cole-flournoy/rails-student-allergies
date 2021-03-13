@@ -7,7 +7,7 @@
     <li>
       <%= c.subject %> - Period <%= c.period %><br>
       Teacher: <%= c.teacher %><br>
-      <%= link_to "Student Roster", classroom_students_path(c)%> <br>
+      <%= link_to "Student Roster", classroom_students_path(c)%>: <%= pluralize(c.students.count, "student") %> <br>
       Allergies or special considerations: <%= c.allergy_count %><br><br>
       <%= link_to "Edit Class", edit_classroom_path(c) %>
       <%= link_to "Add Student", new_classroom_student_path(c) %> <br>
