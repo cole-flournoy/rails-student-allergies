@@ -9,8 +9,8 @@ bimmy = Student.create(first_name: "Bimmy", last_name: "Bonson", grade: 3, lunch
 bob_class.students = jimmy, timmy, mimmy, bimmy
 
 
-pnuts = Allergy.create(name: "Peanuts")
-weird = Allergy.create(name: "Eye contact")
+pnuts = Allergy.create(name: "Peanuts", category: "Food Allergy")
+weird = Allergy.create(name: "Eye contact", category: "Other")
 
 
 epi = Severity.create(name: "Needs Epinephrine", student: jimmy, allergy: pnuts)
