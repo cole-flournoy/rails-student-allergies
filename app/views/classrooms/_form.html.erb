@@ -1,0 +1,12 @@
+<%= form_for @classroom do |f| %>
+  <%= f.label :subject %>
+  <%= f.text_field :subject %><br>
+  <%= f.label :period %>
+  <%= f.number_field :period %><br>
+  <%= f.label :teacher %>
+  <%= f.text_field :teacher %><br>
+
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id %><br>
+  <%= f.submit %><br>
+<% end %>
