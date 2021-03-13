@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_071615) do
   end
 
   create_table "classrooms", force: :cascade do |t|
-    t.string "period"
+    t.integer "period"
     t.string "subject"
     t.string "teacher"
     t.integer "user_id", null: false

@@ -1,6 +1,6 @@
 
 bob = User.create(name: "Bob")
-bob_class = Classroom.create(period: "2", subject: "Math", teacher: "Mr. Bob", user: bob)
+bob_class = Classroom.create(period: 2, subject: "Math", teacher: "Mr. Bob", user: bob)
 
 jimmy = Student.create(first_name: "Jimmy", last_name: "Johnson", grade: 3, lunch_period: "A")
 timmy = Student.create(first_name: "Timmy", last_name: "Tonson", grade: 3, lunch_period: "A")
