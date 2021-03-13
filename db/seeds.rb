@@ -1,6 +1,6 @@
 
-bob = User.create(name: "Mr. Bob")
-bob_class = Classroom.create(name: "Mr. Bob's Class", user: bob)
+bob = User.create(name: "Bob")
+bob_class = Classroom.create(period: "A", subject: "Math", teacher: "Mr. Bob", user: bob)
 
 jimmy = Student.create(name: "Jimmy")
 bob_class.students << jimmy
