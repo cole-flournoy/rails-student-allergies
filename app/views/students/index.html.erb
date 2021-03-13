@@ -4,8 +4,20 @@
 <% else %>
   <h2>All Students</h2>
 <% end %>
-<ul>
-<% @students.each do |s| %>
-  <li><%= "#{s.last_name}, #{s.first_name}: Grade - #{s.grade} Lunch Period - #{s.lunch_period}" %></li>
-<% end %> 
-</ul>
+
+<table>
+  <tr>
+    <th>Last Name </th>
+    <th>First Name </th> 
+    <th>Grade </th>
+    <th>Lunch </th>
+  </tr>
+  <% @students.sort_by{ |s| s.last_name}.each do |s| %>
+    <tr>
+      <td><%= s.last_name %></td> 
+      <td><%= s.first_name %></td>
+      <td><%= s.grade %></td> 
+      <td><%= s.lunch_period %></td>
+    </tr>
+  <% end %>
+</table>
