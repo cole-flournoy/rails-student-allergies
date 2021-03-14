@@ -13,10 +13,27 @@
     <%= f.number_field :grade %><br>
     <%= f.label :lunch_period %>
     <%= f.text_field :lunch_period %><br>
+
     <%= f.hidden_field :classrooms, value: @classroom.id %>
     <%= f.submit %>
   <% end %>
 <% else %>
+  <!--  
+  <%= form_for(@student) do |f| %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %><br>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %><br>
+    <%= f.label :grade %>
+    <%= f.number_field :grade %><br>
+    <%= f.label :lunch_period %>
+    <%= f.text_field :lunch_period %><br>
 
+    <%= f.label :classrooms %>
+    <%= f.collection_check_boxes(:classroom_ids, Classroom.all, :id, :subject, {}, {:multiple => true}) %><br>
+    <%= f.submit %>
+  <% end %> 
+  -->
+  
 <% end %>
   
