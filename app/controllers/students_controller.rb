@@ -14,16 +14,19 @@ class StudentsController < ApplicationController
 
   def new
     if params[:classroom_id]
-      @student = Classroom.find(params[:classroom_id]).students.build
+      @classroom = Classroom.find(params[:classroom_id])
+      @student = Student.new(classroom_ids: @classroom.id)
     else
       @student = Student.new
     end
   end
 
   def create
+    classroom = params[:student][:classrooms]
     @student = Student.new(student_params)
-
+    
     if @student.save
+      @student.classroom_ids = classroom
       redirect_to @student
     else
       render :new
@@ -56,6 +59,6 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:name, :classroom_id)
+    params.require(:student).permit(:first_name, :last_name, :grade, :lunch_period)
   end
 end
