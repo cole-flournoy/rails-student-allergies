@@ -1,1 +1,27 @@
-Student Detail
+<h2><%= @student.first_name + " " + @student.last_name %></h2> 
+Grade: <%= @student.grade %><br>
+Lunch Period: <%= @student.lunch_period %><br>
+
+<% if !@student.display_allergies.empty? %>
+  <% @student.display_allergies.each do |a| %>
+    <b style="color:red;"><%= a %></b><br><br>
+  <% end %>
+<% else %>
+    No allergies<br><br>
+<% end %>
+
+<%= button_to "Edit Student Info", edit_student_path(@student) %>
+<%= button_to "Delete Student", student_path(@student), method: :delete %><br>
+
+
+<h3>Class Schedule:</h3>
+<ul>
+  <% @student.classrooms.sort_by{ |c| c.period }.each do |c| %>
+    <li>
+      <b>Period <%= c.period %></b><br>
+      Subject: <%= c.subject %><br>
+      Teacher: <%= c.teacher %><br><br>
+    </li>
+  <% end %>
+</ul>
+

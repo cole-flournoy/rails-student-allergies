@@ -5,6 +5,6 @@ class Student < ApplicationRecord
   accepts_nested_attributes_for :classrooms
 
   def display_allergies
-    self.severities.map{|s| "Allergic to #{s.allergy.name} and #{s.name}"}
+    self.severities.map{|s| "Allergic to #{s.allergy.name} and #{s.level}"}
   end
 end
