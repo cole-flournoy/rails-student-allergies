@@ -24,12 +24,10 @@ class StudentsController < ApplicationController
   end
 
   def create
-    # classroom = params[:student][:classrooms]
     @student = Student.new(student_params)
-
     
     if @student.save
-      s = ClassroomStudent.create(student_id: @student.id, classroom_id: params[:classroom_id])
+      Enrollment.create(student_id: @student.id, classroom_id: params[:student][:classrooms])
       redirect_to @student
     else
       render :new
