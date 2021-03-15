@@ -1,11 +1,16 @@
 <h2>Signup</h2>
-<p style="color:red;">
-  <% unless @user.errors.empty? %>
+
+<% unless @user.errors.empty? %>
+  <p style="color:red;">
     <% @user.errors.full_messages.each do |m| %>
-      <%= m %><br>
+      <%= m %><br> 
     <% end %>
+  </p>
+  <% if @user.errors.full_messages.include?("Username has already been taken") %>
+    If this is your username, <%= link_to "log in", login_path %><br><br><br>
   <% end %>
-</p>
+<% end %>
+
 
 <%= form_for @user do |f| %>
   <%= f.label :username %>
