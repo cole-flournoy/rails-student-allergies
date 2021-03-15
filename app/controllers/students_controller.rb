@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :verify_logged_in
+  
   def index
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])

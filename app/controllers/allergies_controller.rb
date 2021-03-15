@@ -1,4 +1,6 @@
 class AllergiesController < ApplicationController
+  before_action :verify_logged_in
+  
   def index
     @allergies = Allergy.all
   end

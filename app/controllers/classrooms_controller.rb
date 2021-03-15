@@ -1,4 +1,6 @@
 class ClassroomsController < ApplicationController
+  before_action :verify_logged_in
+
   def index
     # reference from current_user
     @classrooms = Classroom.all
