@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  resources :users, only: [:new, :create]
+
   resources :classrooms
   resources :classrooms, only: [:show] do
     resources :students, only: [:index, :new]
