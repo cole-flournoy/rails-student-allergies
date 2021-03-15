@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 2021_03_12_071615) do
     t.index ["user_id"], name: "index_classrooms_on_user_id"
   end
 
-  create_table "classrooms_students", id: false, force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.integer "classroom_id", null: false
-    t.index ["classroom_id", "student_id"], name: "index_classrooms_students_on_classroom_id_and_student_id"
-    t.index ["student_id", "classroom_id"], name: "index_classrooms_students_on_student_id_and_classroom_id"
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "classroom_id"
+    t.index ["classroom_id"], name: "index_enrollments_on_classroom_id"
+    t.index ["student_id"], name: "index_enrollments_on_student_id"
   end
 
   create_table "severities", force: :cascade do |t|

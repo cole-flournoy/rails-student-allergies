@@ -1,6 +1,7 @@
 class Classroom < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :students
+  has_many :enrollments
+  has_many :students, through: :enrollments
 
   def allergy_count
     count = 0

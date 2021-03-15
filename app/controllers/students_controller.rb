@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :verify_logged_in
-  
+
   def index
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
@@ -17,18 +17,19 @@ class StudentsController < ApplicationController
   def new
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
-      @student = Student.new(classroom_ids: @classroom.id)
+      @student = Student.new
     else
       @student = Student.new
     end
   end
 
   def create
-    classroom = params[:student][:classrooms]
+    # classroom = params[:student][:classrooms]
     @student = Student.new(student_params)
+
     
     if @student.save
-      @student.classroom_ids = classroom
+      s = ClassroomStudent.create(student_id: @student.id, classroom_id: params[:classroom_id])
       redirect_to @student
     else
       render :new
@@ -61,6 +62,6 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :grade, :lunch_period, classroom_ids: [])
+    params.require(:student).permit(:first_name, :last_name, :grade, :lunch_period)
   end
 end
