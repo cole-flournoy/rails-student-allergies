@@ -15,12 +15,17 @@ class SessionsController < ApplicationController
       end
     else
       user = User.find_by(username: params[:username])
-      if user && user.authenticate(params[:password])
-        session[:user_id] = user.id
-        redirect_to '/classrooms'
-      else 
+      if user && user.google == true
+        flash[:alert] = "Please log in with Google to see your saved content"
         render :new
-      end 
+      else
+        if user && user.authenticate(params[:password])
+          session[:user_id] = user.id
+          redirect_to '/classrooms'
+        else 
+          render :new
+        end 
+      end
     end
   end
 
