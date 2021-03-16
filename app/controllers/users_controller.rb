@@ -7,9 +7,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to '/'
+      redirect_to '/classrooms'
     else
-      flash[:alert] = "Could not sign up with given information"
       render :new
     end
   end

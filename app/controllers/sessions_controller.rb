@@ -4,19 +4,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    access_token = request.env["omniauth.auth"]
-    byebug
-    
-    
-    
-    # user = User.find_by(username: params[:username])
-    # if user && user.authenticate(params[:password])
-    #   session[:user_id] = user.id
-    #   redirect_to '/'
-    # else 
-    #   flash[:alert] = "Could not log in with given information"
-    #   render :new
-    # end 
+    if access_token = request.env["omniauth.auth"]
+      if existing_user = User.find_by(username: access_token[:info][:email])
+        session[:user_id] = existing_user.id
+        redirect_to '/classrooms'
+      else
+        new_user = User.create(username: access_token[:info][:email], password: access_token[:uid], google: true)
+        session[:user_id] = new_user.id
+        redirect_to '/classrooms'
+      end
+    else
+      user = User.find_by(username: params[:username])
+      if user && user.authenticate(params[:password])
+        session[:user_id] = user.id
+        redirect_to '/classrooms'
+      else 
+        render :new
+      end 
+    end
   end
 
   def destroy
