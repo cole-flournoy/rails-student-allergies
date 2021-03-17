@@ -1,1 +1,21 @@
-New Allergy
+<h2>Log New Allergy For <%= @student.first_name %></h2>
+
+<%= form_tag("/allergies", method: "post") do %>
+  <% @allergy_count.to_i.times do |count| %>
+    <b>Allergy <%= count + 1 %>: </b><br>
+    <%= label_tag "Allergy" %>
+    <%= text_field_tag "allergy[#{count + 1}][name]" %><br>
+    <%= label_tag "Category" %>
+    <%= select_tag "allergy[#{count + 1}][category]", options_for_select(["Food Allergy", "Medication Allergy", "Dietary Restriction", "Other Allergy"]) %><br><br>
+  <% end %>
+  <%= hidden_field_tag :student, @student.id %>
+  <%= submit_tag "Create" %>
+<% end %>
+  
+
+
+
+
+
+
+  

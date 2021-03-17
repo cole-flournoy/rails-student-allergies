@@ -25,10 +25,18 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-    
+
     if @student.save
-      Enrollment.create(student_id: @student.id, classroom_id: params[:student][:classrooms])
-      redirect_to @student
+      if params[:student][:classrooms]
+        Enrollment.create(student_id: @student.id, classroom_id: params[:student][:classrooms])
+      end
+      if params[:student][:allergy_count] == "0"
+        redirect_to @student
+      else 
+        @allergy_count = params[:student][:allergy_count]
+        @allergy = Allergy.new
+        render '/allergies/new'
+      end
     else
       render :new
     end

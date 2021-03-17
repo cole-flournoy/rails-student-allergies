@@ -1,6 +1,6 @@
 <h2>Edit Student</h2>
 
-<%= form_for(@student) do |f| %>
+<%= form_for @student do |f| %>
   <%= f.label :first_name %>
   <%= f.text_field :first_name %><br>
   <%= f.label :last_name %>
@@ -8,7 +8,9 @@
   <%= f.label :grade %>
   <%= f.number_field :grade %><br>
   <%= f.label :lunch_period %>
-  <%= f.text_field :lunch_period %><br>
-
+  <%= f.text_field :lunch_period %><br><br>
+  <%= f.label "Number of allergies" %>
+  <%= f.number_field :alergy_count, in: 0..5, value: 0 %><br>
+  <br>
   <%= f.submit %>
 <% end %>

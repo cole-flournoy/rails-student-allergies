@@ -1,6 +1,6 @@
 class AllergiesController < ApplicationController
   before_action :verify_logged_in
-  
+
   def index
     @allergies = Allergy.all
   end
@@ -14,13 +14,16 @@ class AllergiesController < ApplicationController
   end
 
   def create
-    @allergy = Allergy.new(allergy_params)
-
-    if @allergy.save
-      redirect_to @allergy
-    else
-      render :new
+    # add severities to new form and associate
+    params[:allergy].keys.each do |key| 
+      @allergy = Allergy.new(name: params[:allergy][key]["name"], category: params[:allergy][key]["category"])
+      if @allergy.save
+        next
+      else
+        render :new
+      end
     end
+    redirect_to student_path(params[:student])
   end
 
   def edit
@@ -49,6 +52,6 @@ class AllergiesController < ApplicationController
   private
 
   def allergy_params
-    params.require(:allergy).permit(:name)
+    params.require(:allergy).permit(:name, :category)
   end
 end

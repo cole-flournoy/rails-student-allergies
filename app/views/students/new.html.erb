@@ -3,7 +3,7 @@
 
 <% if @classroom %>
   <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
-  <%= form_for(@student) do |f| %>
+  <%= form_for @student do |f| %>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %><br>
     <%= f.label :last_name %>
@@ -11,14 +11,15 @@
     <%= f.label :grade %>
     <%= f.number_field :grade %><br>
     <%= f.label :lunch_period %>
-    <%= f.text_field :lunch_period %><br>
+    <%= f.text_field :lunch_period %><br><br>
+    <%= f.label "Number of allergies" %>
+    <%= f.number_field :alergy_count, in: 0..5, value: 0 %><br>
 
-    <%= f.hidden_field :classrooms, value: @classroom.id %>
+    <%= f.hidden_field :classrooms, value: @classroom.id %><br>
     <%= f.submit %>
   <% end %>
 <% else %>
-  <!--  
-  <%= form_for(@student) do |f| %>
+  <%= form_for @student do |f| %>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %><br>
     <%= f.label :last_name %>
@@ -26,13 +27,11 @@
     <%= f.label :grade %>
     <%= f.number_field :grade %><br>
     <%= f.label :lunch_period %>
-    <%= f.text_field :lunch_period %><br>
-
-    <%= f.label :classrooms %>
-    <%= f.collection_check_boxes(:classroom_ids, Classroom.all, :id, :subject, {}, {:multiple => true}) %><br>
+    <%= f.text_field :lunch_period %><br><br>
+    <%= f.label "Number of allergies" %>
+    <%= f.number_field :allergy_count, in: 0..5, value: 0 %><br>
+    <br>
     <%= f.submit %>
-  <% end %> 
-  -->
-  
+  <% end %>
 <% end %>
   
