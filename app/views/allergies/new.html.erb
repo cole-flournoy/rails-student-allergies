@@ -4,9 +4,17 @@
   <% @allergy_count.to_i.times do |count| %>
     <b>Allergy <%= count + 1 %>: </b><br>
     <%= label_tag "Allergy" %>
-    <%= text_field_tag "allergy[#{count + 1}][name]" %><br>
+    <input list="allergies" name="allergy[<%= count + 1 %>][name]" />
+    <datalist id="allergies">
+      <% Allergy.all.each do |allergy| %>
+        <option value="<%= allergy.name %>"></option>
+      <% end %>  
+    </datalist>
+    
     <%= label_tag "Category" %>
-    <%= select_tag "allergy[#{count + 1}][category]", options_for_select(["Food Allergy", "Medication Allergy", "Dietary Restriction", "Other Allergy"]) %><br><br>
+    <%= select_tag "allergy[#{count + 1}][category]", options_for_select(["Food Allergy", "Medication Allergy", "Dietary Restriction", "Other Allergy"]) %><br>
+    <%= label_tag "Requires" %>
+    <%= select_tag "allergy[#{count + 1}][severity]", options_for_select(["Epi", "Prescription Medication", "OTC Medication (ex. Benedryl)"]) %><br><br>
   <% end %>
   <%= hidden_field_tag :student, @student.id %>
   <%= submit_tag "Create" %>

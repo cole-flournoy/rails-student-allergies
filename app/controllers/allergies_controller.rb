@@ -14,16 +14,21 @@ class AllergiesController < ApplicationController
   end
 
   def create
-    # add severities to new form and associate
     params[:allergy].keys.each do |key| 
-      @allergy = Allergy.new(name: params[:allergy][key]["name"], category: params[:allergy][key]["category"])
-      if @allergy.save
-        next
+      existing_allergy = Allergy.find_by(name: params[:allergy][key]["name"])
+      @student = Student.find(params[:student])
+      if existing_allergy
+        Severity.create(level: params[:allergy][key]["severity"], allergy_id: existing_allergy.id, student_id: @student.id)
       else
-        render :new
+        @allergy = Allergy.new(name: params[:allergy][key]["name"], category: params[:allergy][key]["category"])
+        if @allergy.save
+          Severity.create(level: params[:allergy][key]["severity"], allergy_id: @allergy.id, student_id: @student.id) 
+        else
+          render :new
+        end
       end
     end
-    redirect_to student_path(params[:student])
+    redirect_to student_path(@student)
   end
 
   def edit
