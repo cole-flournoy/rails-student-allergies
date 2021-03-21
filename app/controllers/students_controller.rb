@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :verify_logged_in
+  PERMITTED_PARAMS = [:first_name, :last_name, :grade, :lunch_period]
 
   def index
     if params[:classroom_id]
@@ -18,6 +19,8 @@ class StudentsController < ApplicationController
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
       @student = Student.new
+    elsif params[:student_count]
+      @student_count = params[:student_count].to_i
     else
       @student = Student.new
     end
@@ -40,6 +43,23 @@ class StudentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def batch_create
+    params[:student].keys.each do |key|
+      args = params[:student][key] 
+      if args.keys.map{|k| k.to_sym} == PERMITTED_PARAMS
+        args.permit!
+        student = Student.new(args)
+        if student.save
+          next
+        else
+          flash[:alert] = "Please fill in all fields before submitting"
+          redirect_back 
+        end
+      end
+    end   
+    redirect_to students_path 
   end
 
   def edit
@@ -68,6 +88,6 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :grade, :lunch_period)
+    params.require(:student).permit(*PERMITTED_PARAMS)
   end
 end

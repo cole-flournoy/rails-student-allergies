@@ -1,7 +1,5 @@
-<h2>New Student</h2>
-<%= params %>
-
 <% if @classroom %>
+  <h2>New Student For:</h2>
   <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
   <%= form_for @student do |f| %>
     <%= f.label :first_name %>
@@ -13,12 +11,32 @@
     <%= f.label :lunch_period %>
     <%= f.text_field :lunch_period %><br><br>
     <%= f.label "Number of allergies" %>
-    <%= f.number_field :alergy_count, in: 0..5, value: 0 %><br>
+    <%= f.number_field :allergy_count, in: 0..5, value: 0 %><br>
 
     <%= f.hidden_field :classrooms, value: @classroom.id %><br>
     <%= f.submit %>
   <% end %>
+
+<% elsif @student_count %>
+  <h2>New Batch of Students</h2>
+  <%= form_tag "/students/batch", method: "post" do %>
+    <% @student_count.times do |count| %>
+      <% count += 1 %>
+      <b>Student <%= count %>: </b><br>
+      <%= label_tag "First Name" %>
+      <%= text_field_tag "student[#{count}][first_name]" %><br>
+      <%= label_tag "Last Name" %>
+      <%= text_field_tag "student[#{count}][last_name]" %><br>
+      <%= label_tag "Grade" %>
+      <%= number_field_tag "student[#{count}][grade]", nil , min: 0, max: 12, step: 1 %><br>
+      <%= label_tag "Lunch Period" %>
+      <%= text_field_tag "student[#{count}][lunch_period]" %><br><br>
+    <% end %>
+  <%= submit_tag "Create All" %>
+  <% end %>
+
 <% else %>
+  <h2>New Student</h2>
   <%= form_for @student do |f| %>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %><br>

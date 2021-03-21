@@ -21,3 +21,13 @@
     </tr>
   <% end %>
 </table>
+
+<% if !@classroom %>
+  <br><br><b>Add Multiple Students At Once?</b>
+  <%= form_tag '/students/new', method: 'get' do %>
+    <%= label_tag "How many Students?" %>
+    <%= number_field_tag 'student_count', 2 , min: 2, max: 20, step: 1 %><br>
+    <%= submit_tag "Create New Batch" %><br><br>
+  <% end %>
+<% end %>
+
