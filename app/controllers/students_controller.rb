@@ -54,8 +54,8 @@ class StudentsController < ApplicationController
         if student.save
           next
         else
-          flash[:alert] = "Please fill in all fields before submitting"
-          redirect_back 
+          flash[:alert] = "Could not create student batch. Please fill in all fields before submitting"
+          redirect_to(students_path) and return
         end
       end
     end   

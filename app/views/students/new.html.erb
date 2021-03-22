@@ -1,4 +1,5 @@
 <% if @classroom %>
+  <%= render partial: "layouts/errors", locals: {obj: @student} %>
   <h2>New Student For:</h2>
   <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
   <%= form_for @student do |f| %>
@@ -36,6 +37,7 @@
   <% end %>
 
 <% else %>
+  <%= render partial: "layouts/errors", locals: {obj: @student} %>
   <h2>New Student</h2>
   <%= form_for @student do |f| %>
     <%= f.label :first_name %>
