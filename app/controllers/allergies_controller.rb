@@ -11,7 +11,7 @@ class AllergiesController < ApplicationController
 
   def new
     if params[:student_id]
-      @student = Student.find(params[:student_id])
+      @student = Student.find_by(id: params[:student_id])
       if @student
         @allergy = Allergy.new
         @allergy_count = 1
