@@ -13,8 +13,8 @@ pnuts = Allergy.create(name: "Peanuts", category: "Food Allergy")
 weird = Allergy.create(name: "Eye contact", category: "Other")
 
 
-epi = Severity.create(level: "Needs Epinephrine", student: jimmy, allergy: pnuts)
-mild = Severity.create(level: "Needs to be left alone", student: mimmy, allergy: weird)
+epi = Severity.create(level: "Epinephrine", student: jimmy, allergy: pnuts)
+mild = Severity.create(level: "To be left alone", student: mimmy, allergy: weird)
 
-epi2 = Severity.create(level: "Needs Epinephrine", student: timmy, allergy: pnuts)
-mild2 = Severity.create(level: "Needs to be left alone", student: timmy, allergy: weird)
+epi2 = Severity.create(level: "Epinephrine", student: timmy, allergy: pnuts)
+mild2 = Severity.create(level: "To be left alone", student: timmy, allergy: weird)
