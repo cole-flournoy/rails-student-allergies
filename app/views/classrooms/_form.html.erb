@@ -6,7 +6,6 @@
   <%= f.label :teacher %>
   <%= f.text_field :teacher %><br>
 
-  <%= f.label :user_id %>
-  <%= f.text_field :user_id %><br>
+  <%= f.hidden_field :user_id, value: session[:user_id] %><br>
   <%= f.submit %><br>
 <% end %>
