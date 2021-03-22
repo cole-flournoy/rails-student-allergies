@@ -10,7 +10,18 @@ class AllergiesController < ApplicationController
   end
 
   def new
-    @allergy = Allergy.new
+    if params[:student_id]
+      @student = Student.find(params[:student_id])
+      if @student
+        @allergy = Allergy.new
+        @allergy_count = 1
+      else
+        flash[:alert] = "No matching student found"
+        redirect_back(fallback_location: students_path) 
+      end
+    else
+      redirect_back(fallback_location: students_path)
+    end
   end
 
   def create

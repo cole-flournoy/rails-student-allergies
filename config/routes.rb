@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   
   post '/students/batch' => 'students#batch_create'  
   resources :students
+  resources :students, only: [:show] do
+    resources :allergies, only: [:new]
+  end
   
 
   

@@ -36,7 +36,7 @@ class StudentsController < ApplicationController
       if params[:student][:allergy_count] == "0"
         redirect_to @student
       else 
-        @allergy_count = params[:student][:allergy_count]
+        @allergy_count = params[:student][:allergy_count].to_i
         @allergy = Allergy.new
         render '/allergies/new'
       end
