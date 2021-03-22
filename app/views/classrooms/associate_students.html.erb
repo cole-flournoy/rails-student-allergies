@@ -1,0 +1,31 @@
+
+<h3><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
+
+<%= link_to "Skip For Now", classrooms_path %><br><br>
+
+<b style="padding-left: 100px;">Select Students To Add</b><br><br>
+
+
+<%= form_tag "/classrooms/#{@classroom.id}/add_students", method: "post" do %>
+  <table>
+    <tr>
+      <th style="padding-left: 15px;">Add? </th>
+      <th style="padding-left: 15px;">Last Name </th>
+      <th style="padding-left: 15px;">First Name </th> 
+      <th style="padding-left: 15px;">Grade </th>
+      <th style="padding-left: 15px;">Lunch </th>
+    </tr>
+    <% @students.sort_by{ |s| s.last_name}.each do |s| %>
+      <tr>
+        <td style="padding-left: 20px;"><%= check_box_tag "student[#{s.id}]" %></td>
+        <td style="padding-left: 15px;"><%= s.last_name %></td> 
+        <td style="padding-left: 15px;"><%= s.first_name %></td>
+        <td style="padding-left: 15px;"><%= s.grade %></td> 
+        <td style="padding-left: 15px;"><%= s.lunch_period %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= submit_tag "Add Students To Class" %><br><br>
+<% end %>
+
+

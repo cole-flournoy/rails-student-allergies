@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   resources :classrooms
   resources :classrooms, only: [:show] do
     resources :students, only: [:index, :new]
+    get '/add_students' => 'classrooms#students_to_associate'
+    post '/add_students' => 'classrooms#associate_students'
   end
+  
 
   resources :severities
   resources :allergies

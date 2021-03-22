@@ -18,11 +18,25 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.new(classroom_params)
 
     if @classroom.save
-      redirect_to classroom_path(@classroom)
+      redirect_to classroom_add_students_path(@classroom)
     else
       flash[:alert] = "Could not be created"
       render :new
     end
+  end
+
+  def students_to_associate
+    @classroom = Classroom.find_by(id: params[:classroom_id])
+    @students = Student.all
+    render :associate_students
+  end
+
+  def associate_students
+    student_ids = params[:student].keys.map{|k| k.to_i}
+    student_ids.each do |s_id|
+      Enrollment.create(student_id: s_id, classroom_id: params[:classroom_id])
+    end
+    redirect_to classroom_students_path(params[:classroom_id])
   end
 
   def edit
