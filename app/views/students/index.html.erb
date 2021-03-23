@@ -49,5 +49,6 @@
   <% end %>
 <% else %>
   <br><%= link_to "Add students to this class", classroom_add_students_path(@classroom) %>
+  <br><br><%= button_to "Delete This Class", classroom_path(@classroom), method: :delete %>
 <% end %>
 

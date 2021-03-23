@@ -10,10 +10,16 @@
   </head>
 
   <body>
-  <b style="color:red;"><%= flash[:alert] %></b>
+  <% unless !logged_in? %>
+    <br>
+    <a style="padding-left: 80px;"><%= link_to "My Classes", classrooms_path %></a>
+    <a style="padding-left: 80px;"><%= link_to "New Class", new_classroom_path %></a> 
+    <a style="padding-left: 80px;"><%= link_to "All Students", students_path %></a>
+    <a style="padding-left: 80px;"><%= link_to "Log Out", logout_path %></a>
+  <% end %>
+  <br><br><b style="color:red;"><%= flash[:alert] %></b>
 
     <%= yield %>
 
-    <br><br><%= link_to "Log Out", logout_path if logged_in? %> 
   </body>
 </html>
