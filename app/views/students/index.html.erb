@@ -47,5 +47,7 @@
     <%= number_field_tag 'student_count', 2 , min: 2, max: 20, step: 1 %><br>
     <%= submit_tag "Create New Batch" %><br><br>
   <% end %>
+<% else %>
+  <br><%= link_to "Add students to this class", classroom_add_students_path(@classroom) %>
 <% end %>
 
