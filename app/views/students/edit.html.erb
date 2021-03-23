@@ -1,16 +1,8 @@
 <h2>Edit Student</h2>
 <%= render partial: "layouts/errors", locals: {obj: @student} %>
 <%= form_for @student do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %><br>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %><br>
-  <%= f.label :grade %>
-  <%= f.number_field :grade %><br>
-  <%= f.label :lunch_period %>
-  <%= f.text_field :lunch_period %><br><br>
-  <%= f.label "Number of allergies" %>
-  <%= f.number_field :alergy_count, in: 0..5, value: 0 %><br>
-  <br>
+  <%= render partial: "form", locals: {f: f} %>
   <%= f.submit %>
 <% end %>
+
+<br><br>To add an allergy instead click <%= link_to "here", new_student_allergy_path(@student) %>
