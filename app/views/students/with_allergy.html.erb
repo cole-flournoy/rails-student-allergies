@@ -4,15 +4,20 @@
 <% else %>
   <h2>All Students With Allergies</h2>
 <% end %>
-<ul>
-  <% @students.each do |s| %>
-    <li>
-      <h4><%= "#{s.last_name}, #{s.first_name}" %></h4> 
-      <%= "Grade: #{s.grade}     Lunch Period: #{s.lunch_period}" %><br>
-      <% s.display_allergies.each.with_index do |a, index| %>
-        <b style="color:red;"><%= a %></b> <%= button_to "Remove Allergy #{index + 1}", severity_path(s.severities[index]), method: :delete %>
-      <% end %>
-      <br>
-    </li>
-  <% end %>
-</ul>
+
+<% if @students.nil? %>
+  <br>No Students in this class have allergies!
+<% else %>
+  <ul>
+    <% @students.each do |s| %>
+      <li>
+        <h4><%= "#{s.last_name}, #{s.first_name}" %></h4> 
+        <%= "Grade: #{s.grade}     Lunch Period: #{s.lunch_period}" %><br>
+        <% s.display_allergies.each.with_index do |a, index| %>
+          <b style="color:red;"><%= a %></b> <%= button_to "Remove Allergy #{index + 1}", severity_path(s.severities[index]), method: :delete %>
+        <% end %>
+        <br>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   
   def verify_user
     if current_user.classrooms.include?(@classroom)
+  
     else
       flash[:alert] = "You don't have permission to view that"
       redirect_to classrooms_path
