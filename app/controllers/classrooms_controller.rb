@@ -60,8 +60,9 @@ class ClassroomsController < ApplicationController
   def destroy
     @classroom = Classroom.find(params[:id])
     verify_user
+    @classroom.enrollments.destroy_all
     @classroom.destroy
-    flash[:alert] = "Classroom deleted"
+    flash[:alert] = "Class deleted"
     redirect_to classrooms_path
   end
 
