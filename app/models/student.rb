@@ -12,6 +12,6 @@ class Student < ApplicationRecord
 
 
   def display_allergies
-    self.severities.map{|s| "Allergic to #{s.allergy.name} (#{s.allergy.category}) and requires #{s.level}"}
+    self.severities.map{|s| "#{s.allergy.category}: #{s.allergy.name} - Requires #{s.level}"}
   end
 end

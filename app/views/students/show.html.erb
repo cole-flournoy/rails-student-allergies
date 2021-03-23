@@ -4,8 +4,9 @@ Lunch Period: <%= @student.lunch_period %><br>
 
 <% if !@student.display_allergies.empty? %>
   <% @student.display_allergies.each do |a| %>
-    <b style="color:red;"><%= a %></b><br><br>
+    <b style="color:red;"><%= a %></b><br>
   <% end %>
+  <br>
 <% else %>
     No allergies<br><br>
 <% end %>
