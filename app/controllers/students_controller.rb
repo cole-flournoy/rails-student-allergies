@@ -92,6 +92,7 @@ class StudentsController < ApplicationController
 
   def destroy
     @student = Student.find(params[:id])
+    @student.severities.destroy_all
     @student.destroy
     flash[:alert] = "Student deleted"
     redirect_back fallback_location: students_path
