@@ -42,8 +42,8 @@ class SeveritiesController < ApplicationController
   def destroy
     @severity = Severity.find(params[:id])
     @severity.destroy
-    # flash[:notice] = "Severity deleted."
-    redirect_to severities_path
+    flash[:alert] = "Allergy Successfully Removed!"
+    redirect_back fallback_location: students_path
   end
 
   private

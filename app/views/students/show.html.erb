@@ -3,10 +3,10 @@ Grade: <%= @student.grade %><br>
 Lunch Period: <%= @student.lunch_period %><br>
 
 <% if !@student.display_allergies.empty? %>
-  <% @student.display_allergies.each do |a| %>
-    <b style="color:red;"><%= a %></b><br>
+  <% @student.display_allergies.each.with_index do |a, index| %>
+    <b style="color:red;"><%= a %></b> <%= button_to "Remove Allergy #{index + 1}", severity_path(@student.severities[index]), method: :delete %>
   <% end %>
-  <br>
+  <br><br>
 <% else %>
     No allergies<br><br>
 <% end %>
