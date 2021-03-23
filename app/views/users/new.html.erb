@@ -1,4 +1,4 @@
-<h2>Signup</h2>
+<h2>Welcome! Please Sign Up</h2>
 
 <% unless @user.errors.empty? %>
   <p style="color:red;">
@@ -7,7 +7,7 @@
     <% end %>
   </p>
   <% if @user.errors.full_messages.include?("Username has already been taken") %>
-    If this is your username, <%= link_to "log in", login_path %><br><br><br>
+    If this is your username, please <%= link_to "log in", login_path %><br><br><br>
   <% end %>
 <% end %>
 
