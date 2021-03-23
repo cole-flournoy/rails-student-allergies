@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get '/add_students' => 'classrooms#students_to_associate'
     post '/add_students' => 'classrooms#associate_students'
     get '/students/with_allergy' => 'students#with_allergy'
+    post '/remove_student' => 'classrooms#remove_association'
   end
   
 
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
   resources :students, only: [:show] do
     resources :allergies, only: [:new]
   end
+
+  
   
 
   

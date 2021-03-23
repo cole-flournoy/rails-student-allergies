@@ -90,8 +90,8 @@ class StudentsController < ApplicationController
   def destroy
     @student = Student.find(params[:id])
     @student.destroy
-    # flash[:notice] = "Student deleted."
-    redirect_to students_path
+    flash[:alert] = "Student deleted"
+    redirect_back fallback_location: students_path
   end
 
   private

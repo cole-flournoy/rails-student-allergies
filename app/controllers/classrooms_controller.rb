@@ -34,6 +34,13 @@ class ClassroomsController < ApplicationController
     redirect_to classroom_students_path(params[:classroom_id])
   end
 
+  def remove_association
+    enrollment = Enrollment.find_by(student: params[:student_id], classroom: params[:classroom_id])
+    enrollment.destroy
+    flash[:alert] = "Student removed from class"
+    redirect_back fallback_location: classroom_students_path(params[:classroom_id]) 
+  end
+
   def edit
     @classroom = Classroom.find(params[:id])
   end
