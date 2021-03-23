@@ -1,3 +1,5 @@
 <h2>Edit Class</h2>
 <%= render partial: "layouts/errors", locals: {obj: @classroom} %>
 <%= render "form" %>
+
+<br><br><br><%= button_to "Delete Class", classroom_path(@classroom), method: :delete %>
