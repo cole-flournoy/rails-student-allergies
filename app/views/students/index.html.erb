@@ -1,11 +1,12 @@
 <% if @classroom %>
   <h2>Student Roster</h2>
   <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
-  <br><%= link_to "See Only Students With Allergies", classroom_students_with_allergy_path(@classroom) %><br><br>
+  <%= link_to "See Only Students With Allergies", classroom_students_with_allergy_path(@classroom) %><br><br>
 <% else %>
   <h2>All Students</h2>
-  <br><%= link_to "See Only Students With Allergies", students_with_allergy_path %><br><br>
+  <%= link_to "See Only Students With Allergies", students_with_allergy_path %><br><br>
 <% end %>
+<b> * indicates student with allergy</b><br><br>
 
 <table>
   <tr>
@@ -13,13 +14,28 @@
     <th>First Name </th> 
     <th>Grade </th>
     <th>Lunch </th>
+    <th>Detail </th>
+    <th>Edit </th>
+    <th>Remove </th>
   </tr>
   <% @students.each do |s| %>
     <tr>
-      <td><%= s.last_name %></td> 
+      <td><%= "* " if s.allergies.count > 0 %><%= s.last_name %></td> 
       <td><%= s.first_name %></td>
       <td><%= s.grade %></td> 
       <td><%= s.lunch_period %></td>
+      <td><%= link_to "Detail", student_path(s) %></td>
+      <td><%= link_to "Edit", edit_student_path(s) %></td>
+      <% if @classroom %>
+        <td>
+          <%= form_tag classroom_remove_student_path(@classroom), method: "post" do %>
+            <%= hidden_field_tag "student_id", s.id %>
+            <%= submit_tag "Remove" %>
+          <% end %>
+        </td>
+      <% else %>
+        <td><%= button_to "Delete", student_path(s), method: :delete %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
