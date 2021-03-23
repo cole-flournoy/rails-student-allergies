@@ -2,8 +2,7 @@ class ClassroomsController < ApplicationController
   before_action :verify_logged_in
 
   def index
-    # reference from current_user
-    @classrooms = Classroom.all
+    @classrooms = current_user.classrooms
   end
 
   def new
@@ -43,11 +42,12 @@ class ClassroomsController < ApplicationController
 
   def edit
     @classroom = Classroom.find(params[:id])
+    verify_user
   end
 
   def update
     @classroom = Classroom.find(params[:id])
-
+    verify_user
     @classroom.update(classroom_params)
 
     if @classroom.save
@@ -59,8 +59,9 @@ class ClassroomsController < ApplicationController
 
   def destroy
     @classroom = Classroom.find(params[:id])
+    verify_user
     @classroom.destroy
-    # flash[:notice] = "Classroom deleted."
+    flash[:alert] = "Classroom deleted"
     redirect_to classrooms_path
   end
 

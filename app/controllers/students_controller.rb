@@ -5,6 +5,7 @@ class StudentsController < ApplicationController
   def index
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
+      verify_user
       @students = @classroom.students
     else
       @students = Student.all.sort_by{ |s| s.last_name}
@@ -18,6 +19,7 @@ class StudentsController < ApplicationController
   def with_allergy
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
+      verify_user
       @students = @classroom.students.has_allergy.sort_by{ |s| s.last_name}
     else
       @students = Student.has_allergy.sort_by{ |s| s.last_name}
@@ -27,6 +29,7 @@ class StudentsController < ApplicationController
   def new
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])
+      verify_user
       @student = Student.new
     elsif params[:student_count]
       @student_count = params[:student_count].to_i

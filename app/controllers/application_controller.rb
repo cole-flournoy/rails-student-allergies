@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+  
+  def verify_user
+    if current_user.classrooms.include?(@classroom)
+    else
+      flash[:alert] = "You don't have permission to view that"
+      redirect_to classrooms_path
+    end
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
