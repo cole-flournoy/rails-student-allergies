@@ -1,8 +1,10 @@
 <% if @classroom %>
   <h2>Student Roster</h2>
   <h4><%= "Period #{@classroom.period} #{@classroom.subject} with #{@classroom.teacher}" %></h4>
+  <br><%= link_to "See Only Students With Allergies", classroom_students_with_allergy_path(@classroom) %><br><br>
 <% else %>
   <h2>All Students</h2>
+  <br><%= link_to "See Only Students With Allergies", students_with_allergy_path %><br><br>
 <% end %>
 
 <table>
@@ -12,7 +14,7 @@
     <th>Grade </th>
     <th>Lunch </th>
   </tr>
-  <% @students.sort_by{ |s| s.last_name}.each do |s| %>
+  <% @students.each do |s| %>
     <tr>
       <td><%= s.last_name %></td> 
       <td><%= s.first_name %></td>

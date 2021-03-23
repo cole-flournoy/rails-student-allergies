@@ -7,12 +7,21 @@ class StudentsController < ApplicationController
       @classroom = Classroom.find(params[:classroom_id])
       @students = @classroom.students
     else
-      @students = Student.all
+      @students = Student.all.sort_by{ |s| s.last_name}
     end
   end
 
   def show
     @student = Student.find(params[:id])
+  end
+
+  def with_allergy
+    if params[:classroom_id]
+      @classroom = Classroom.find(params[:classroom_id])
+      @students = @classroom.students.has_allergy.sort_by{ |s| s.last_name}
+    else
+      @students = Student.has_allergy.sort_by{ |s| s.last_name}
+    end
   end
 
   def new
