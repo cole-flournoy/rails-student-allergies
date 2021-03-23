@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
+  # Login/Logout/Signup
   get 'auth/google_oauth2/callback', to: 'sessions#create'
-
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
-
   resources :users, only: [:new, :create]
 
+  # Classrooms
   resources :classrooms
   resources :classrooms, only: [:show] do
     resources :students, only: [:index, :new]
@@ -17,17 +16,21 @@ Rails.application.routes.draw do
     post '/remove_student' => 'classrooms#remove_association'
   end
   
-
-  resources :severities
-  resources :allergies
-  
+  # Students
   post '/students/batch' => 'students#batch_create'  
   get '/students/with_allergy' => 'students#with_allergy'
   resources :students
-  
   resources :students, only: [:show] do
     resources :allergies, only: [:new]
   end
+  
+  # Allergies
+  resources :allergies, only: [:new, :destroy]
+  post '/allergies' => 'allergies#create'
+  
+  # Severities
+  resources :severities, only: [:destroy]
+
 
   
   

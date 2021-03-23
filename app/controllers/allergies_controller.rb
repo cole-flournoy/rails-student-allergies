@@ -1,14 +1,6 @@
 class AllergiesController < ApplicationController
   before_action :verify_logged_in
 
-  def index
-    @allergies = Allergy.all
-  end
-
-  def show
-    @allergy = Allergy.find(params[:id])
-  end
-
   def new
     if params[:student_id]
       @student = Student.find_by(id: params[:student_id])
@@ -42,27 +34,11 @@ class AllergiesController < ApplicationController
     redirect_to student_path(@student)
   end
 
-  def edit
-    @allergy = Allergy.find(params[:id])
-  end
-
-  def update
-    @allergy = Allergy.find(params[:id])
-
-    @allergy.update(allergy_params)
-
-    if @allergy.save
-      redirect_to @allergy
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @allergy = Allergy.find(params[:id])
     @allergy.destroy
-    # flash[:notice] = "Allergy deleted."
-    redirect_to allergies_path
+    flash[:alert] = "Allergy deleted"
+    redirect_back fallback_location: students_path
   end
 
   private
