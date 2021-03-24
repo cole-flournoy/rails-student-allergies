@@ -50,6 +50,7 @@ class StudentsController < ApplicationController
       else 
         @allergy_count = params[:student][:allergy_count].to_i
         @allergy = Allergy.new
+        @allergies = Allergy.all.sort_by{|a| a.name}
         render '/allergies/new'
       end
     else
@@ -95,7 +96,7 @@ class StudentsController < ApplicationController
     @student.severities.destroy_all
     @student.destroy
     flash[:alert] = "Student deleted"
-    redirect_back fallback_location: students_path
+    redirect_to students_path
   end
 
   private

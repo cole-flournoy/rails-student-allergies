@@ -5,14 +5,14 @@
   <h2>All Students With Allergies</h2>
 <% end %>
 
-<% if @students.nil? %>
-  <br>No Students in this class have allergies!
+<% if @students.empty? %>
+  <br><b style="color:red; padding-left: 50px;">No Students in this class have allergies!</b>
 <% else %>
   <ul>
     <% @students.each do |s| %>
       <li>
-        <h4><%= "#{s.last_name}, #{s.first_name}" %></h4> 
-        <%= "Grade: #{s.grade}     Lunch Period: #{s.lunch_period}" %><br>
+        <b><%= "#{s.last_name}, #{s.first_name}" %></b><br><br> 
+        <%= "Grade: #{s.grade} - Lunch Period: #{s.lunch_period}" %><br>
         <% s.display_allergies.each.with_index do |a, index| %>
           <b style="color:red;"><%= a %></b> <%= button_to "Remove Allergy #{index + 1}", severity_path(s.severities[index]), method: :delete %>
         <% end %>

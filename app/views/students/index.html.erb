@@ -39,6 +39,9 @@
     </tr>
   <% end %>
 </table>
+<% if @classroom && @students.empty? %>
+  <br><b style="color:red; padding-left: 50px;">This class doesn't have any students yet!</b><br><br><br>
+<% end %>
 
 <% if !@classroom %>
   <br><br><b>Add Multiple Students At Once?</b>

@@ -6,7 +6,7 @@
     <%= label_tag "Allergy" %>
     <input list="allergies" name="allergy[<%= count + 1 %>][name]" />
     <datalist id="allergies">
-      <% Allergy.all.each do |allergy| %>
+      <% @allergies.each do |allergy| %>
         <option value="<%= allergy.name %>"></option>
       <% end %>  
     </datalist>

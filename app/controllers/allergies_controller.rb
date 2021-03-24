@@ -7,6 +7,7 @@ class AllergiesController < ApplicationController
       if @student
         @allergy = Allergy.new
         @allergy_count = 1
+        @allergies = Allergy.all.sort_by{|a| a.name}
       else
         flash[:alert] = "No matching student found"
         redirect_back(fallback_location: students_path) 

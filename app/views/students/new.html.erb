@@ -13,6 +13,8 @@
 
 <% elsif @student_count %>
   <h2>New Batch of Students</h2>
+  ** Make sure to fill in all boxes or your request will not be accepted **<br><br> 
+
   <%= form_tag "/students/batch", method: "post" do %>
     <% @student_count.times do |count| %>
       <% count += 1 %>

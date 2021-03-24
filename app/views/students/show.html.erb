@@ -10,6 +10,7 @@ Lunch Period: <%= @student.lunch_period %><br>
 <% else %>
     No allergies<br><br>
 <% end %>
+<%= button_to "Add Allergy", new_student_allergy_path(@student), method: :get %><br><br>
 
 <%= button_to "Edit Student Info", edit_student_path(@student) %>
 <%= button_to "Delete Student", student_path(@student), method: :delete %><br>
