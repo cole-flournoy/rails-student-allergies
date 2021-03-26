@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Search
+  get '/students/search' => 'students#search'
+  
   # Login/Logout/Signup
   get 'auth/google_oauth2/callback', to: 'sessions#create'
   get '/login' => 'sessions#new'
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
   resources :severities, only: [:destroy]
 
 
-  
   
 
   

@@ -9,9 +9,12 @@ class Student < ApplicationRecord
   
   scope :has_allergy, -> { joins(:allergies).uniq }
 
-
-
   def display_allergies
     self.severities.map{|s| "#{s.allergy.category}: #{s.allergy.name} - Requires #{s.level}"}
   end
+
+  def self.last_name_search(query)
+    Student.where("last_name LIKE ?", "%#{query}%")
+  end 
+
 end

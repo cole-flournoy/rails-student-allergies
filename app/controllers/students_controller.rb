@@ -2,6 +2,11 @@ class StudentsController < ApplicationController
   before_action :verify_logged_in
   PERMITTED_PARAMS = [:first_name, :last_name, :grade, :lunch_period]
 
+  def search
+    @students = Student.last_name_search(params[:search])
+    render :index
+  end 
+
   def index
     if params[:classroom_id]
       @classroom = Classroom.find(params[:classroom_id])

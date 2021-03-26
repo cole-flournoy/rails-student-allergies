@@ -8,6 +8,16 @@
 <% end %>
 <b> * indicates student with allergy</b><br><br>
 
+<%= form_tag '/students/search', method: 'get' do %>
+  <%= label_tag "Search by Last Name" %>
+  <%= text_field_tag "search" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
+
+
+
 <table>
   <tr>
     <th>Last Name </th>
