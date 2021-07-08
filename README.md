@@ -22,8 +22,8 @@ Welcome! This is a student allergy tracker for schools. The idea is that teacher
 2. From there, just sign up and play around! For a video showing the intended uses and 
 how some things work within the app: https://youtu.be/K1__u0EIOSo 
 
-<img src="images/my_classes.png" width="100">
-![all students](images/all_students.png)
+<img src="images/my_classes.png" width="500">
+<img src="images/all_students.png" width="500">
 
 ## Contributing
 
