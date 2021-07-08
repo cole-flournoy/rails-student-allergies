@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Home
+  get '/' => 'sessions#new'
+  
   # Search
   get '/students/search' => 'students#search'
   
