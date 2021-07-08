@@ -22,6 +22,9 @@ Welcome! This is a student allergy tracker for schools. The idea is that teacher
 2. From there, just sign up and play around! For a video showing the intended uses and 
 how some things work within the app: https://youtu.be/K1__u0EIOSo 
 
+![my classes](images/my_classes.png)
+![all students](images/all_students.png)
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/cole-flournoy/rails-student-allergies.
